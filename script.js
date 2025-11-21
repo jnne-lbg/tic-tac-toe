@@ -1,4 +1,6 @@
 
+// todo: remove event listeners after win
+
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
 let activePlayer = 1;
 let winMessage = document.getElementById("win-message");
@@ -46,6 +48,8 @@ function handleCellClick(event) {
         }
         if (checkWin(1)) {
             winMessage.innerText = "Player 1 Has Won";
+            removeAllEventListeners();
+        
             let value = Number(sessionStorage.getItem("XWins")) || 0;
             value += 1;
             sessionStorage.setItem("XWins", value);
@@ -57,11 +61,14 @@ function handleCellClick(event) {
         gameBoard[cellIndex] = 2;
         activePlayer = 1;
         event.target.removeEventListener("click", handleCellClick);
+
         if (checkTie()) {
             winMessage.innerText = "Tie";
         }
         if (checkWin(2)) {
             winMessage.innerText = "Player 2 Has Won";
+            removeAllEventListeners();
+        
             let value2 = Number(sessionStorage.getItem("OWins")) || 0;
             value2 += 1;
             sessionStorage.setItem("OWins", value2);
@@ -91,6 +98,13 @@ function checkTie() {
     ) {
         return true;
     } return false;
+}
+
+function removeAllEventListeners() {
+    for (let i = 0; i < 9; i++) {
+        let cell = document.getElementById(`square-${i}`);
+        cell.removeEventListener("click", handleCellClick);
+    }
 }
 
 let playAgainButton = document.getElementById("button-play-again");
