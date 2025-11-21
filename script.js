@@ -12,3 +12,22 @@ for (let i = 0; i < 9; i++) {
    let cell = document.getElementById(`square-${i}`);
    cell.addEventListener("click", handleCellClick);
 }
+
+function restartBoard() {
+    gameBoard = ['', '', '', '', '', '', '', '', ''];
+    activePlayer = 1;
+ 
+    for (let i = 0; i < 9; i++) {
+        let cell = document.getElementById(`square-${i}`);
+        cell.innerText = '';
+    }
+ 
+    for (let i = 0; i < 9; i++) {
+        let cell = document.getElementById(`square-${i}`);
+        cell.addEventListener("click", handleCellClick);
+    }
+ 
+    winMessage.innerText = '';
+ 
+ }
+ 
