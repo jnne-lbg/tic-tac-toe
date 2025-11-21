@@ -1,11 +1,12 @@
-// Todo: display message congratulating winner
-// add message if the game ends in a tie
-// be able to intializeBoard and states to restart
-// keep track of wins and losses
 
 let gameBoard = ['', '', '', '', '', '', '', '', ''];
 let activePlayer = 1;
 let winMessage = document.getElementById("win-message");
+let scoreboardX = document.getElementById("scoreboard-x");
+let scoreboardO = document.getElementById("scoreboard-o");
+
+scoreboardX.innerText = sessionStorage.getItem("XWins") || 0;
+scoreboardO.innerText = sessionStorage.getItem("OWins") || 0;
 
 for (let i = 0; i < 9; i++) {
     let cell = document.getElementById(`square-${i}`);
@@ -45,6 +46,10 @@ function handleCellClick(event) {
         }
         if (checkWin(1)) {
             winMessage.innerText = "Player 1 Has Won";
+            let value = Number(sessionStorage.getItem("XWins")) || 0;
+            value += 1;
+            sessionStorage.setItem("XWins", value);
+            scoreboardX.innerText = sessionStorage.getItem("XWins") || 0;
         }
     
     } else if (activePlayer == 2) {
@@ -57,6 +62,10 @@ function handleCellClick(event) {
         }
         if (checkWin(2)) {
             winMessage.innerText = "Player 2 Has Won";
+            let value2 = Number(sessionStorage.getItem("OWins")) || 0;
+            value2 += 1;
+            sessionStorage.setItem("OWins", value2);
+            scoreboardO.innerText = sessionStorage.getItem("OWins") || 0;
         }
     }
 }
