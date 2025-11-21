@@ -75,3 +75,18 @@ function restartBoard() {
     }
  }
  
+ function checkTie() {
+    if (typeof gameBoard[0] === "number" &&
+        typeof gameBoard[1] === "number" &&
+        typeof gameBoard[2] === "number" &&
+        typeof gameBoard[3] === "number" &&
+        typeof gameBoard[4] === "number" &&
+        typeof gameBoard[5] === "number" &&
+        typeof gameBoard[6] === "number" &&
+        typeof gameBoard[7] === "number" &&
+        typeof gameBoard[8] === "number"
+    ) {
+        return true;
+    } return false;
+ }
+ 
